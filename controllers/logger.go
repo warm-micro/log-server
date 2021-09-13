@@ -29,7 +29,12 @@ func Addlog(c *gin.Context) {
 
 func ListLogs(c *gin.Context) {
 	var apiLogs []db.ApiLog
-	db.DB.Find(&apiLogs)
+	if service, check := c.GetQuery("service"); check {
+		db.DB.Where("api LIKE ?", "/"+service+"%").Find(&apiLogs)
+	} else {
+		db.DB.Find(&apiLogs)
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"message": "list all Log",
 		"body":    apiLogs,
@@ -38,7 +43,11 @@ func ListLogs(c *gin.Context) {
 
 func ListCounts(c *gin.Context) {
 	var apiCounts []db.ApiCount
-	db.DB.Find(&apiCounts)
+	if service, check := c.GetQuery("service"); check {
+		db.DB.Where("api LIKE ?", "/"+service+"%").Find(&apiCounts)
+	} else {
+		db.DB.Find(&apiCounts)
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"message": "list all count",
 		"body":    apiCounts,
