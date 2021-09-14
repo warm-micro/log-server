@@ -7,10 +7,12 @@ type ApiLog struct {
 	Api     string
 	Status  string
 	Latency string
+	Method  string
 }
 
 type ApiCount struct {
 	gorm.Model
-	Api   string
-	Count uint
+	Api    string
+	Count  uint
+	Method string
 }
