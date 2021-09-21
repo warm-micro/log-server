@@ -2,6 +2,7 @@ package db
 
 import "gorm.io/gorm"
 
+// 단일 로그 저장
 type ApiLog struct {
 	gorm.Model
 	Api     string
@@ -10,6 +11,7 @@ type ApiLog struct {
 	Method  string
 }
 
+// 서비스 호출 횟수 저장
 type ApiCount struct {
 	gorm.Model
 	Api    string

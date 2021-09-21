@@ -11,4 +11,6 @@ func AddLoggerRouter(router *gin.RouterGroup) {
 	router.POST("", controllers.Addlog)
 
 	router.GET("/counts", controllers.ListCounts)
+
+	router.GET("/deleteWrong", controllers.DeleteWrongLog)
 }
